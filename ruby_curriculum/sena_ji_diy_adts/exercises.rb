@@ -6,7 +6,7 @@ class Stack
 
   def push(el)
     # adds an element to the stack
-    @stack.push(el)
+    @stack << el
   end
 
   def pop
@@ -16,6 +16,24 @@ class Stack
 
   def peek
     # returns, but doesn't remove, the top element in the stack
-    @stack[0]
+    @stack.first
+  end
+end
+
+class Queue
+  def initialize
+    @queue = []
+  end
+
+  def enqueue(el)
+    @queue << el
+  end
+
+  def dequeue
+    @queue.shift
+  end
+
+  def peek
+    @queue.first
   end
 end
