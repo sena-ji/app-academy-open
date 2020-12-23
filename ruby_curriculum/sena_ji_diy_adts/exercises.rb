@@ -1,4 +1,6 @@
 class Stack
+  attr_accessor :stack
+
   def initialize
     # create ivar to store stack here!
     @stack = []
@@ -21,6 +23,8 @@ class Stack
 end
 
 class Queue
+  attr_accessor :queue
+
   def initialize
     @queue = []
   end
@@ -39,6 +43,8 @@ class Queue
 end
 
 class Map
+  attr_accessor :map
+
   def initialize
     @map = []
   end
@@ -46,7 +52,7 @@ class Map
   def set(key, value)
     @map.each do |pair|
       if pair[0] == key
-        pair[1] = value
+        return pair[1] = value
       end
     end
 
