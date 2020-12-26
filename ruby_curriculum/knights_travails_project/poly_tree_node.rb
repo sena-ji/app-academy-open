@@ -26,8 +26,8 @@ class PolyTreeNode
     return self if @value == target_value
 
     self.children.each do |child|
-      search = child.dfs(target_value)
-      return search unless search.nil?
+      search_result = child.dfs(target_value)
+      return search_result unless search_result.nil?
     end
 
     nil
