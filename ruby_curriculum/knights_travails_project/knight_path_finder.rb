@@ -10,13 +10,13 @@ class KnightPathFinder
   def self.valid_moves(pos)
     row, col = pos
 
-    new_moves = POSSIBLE_MOVES.map do |move| 
+    val_moves = POSSIBLE_MOVES.map do |move| 
       if (row + move.first).between?(0, 7) && (col + move.last).between?(0, 7)
         [row + move.first, col + move.last]
       end
     end
 
-    new_moves.reject(&:nil?)
+    val_moves.reject(&:nil?)
   end
 
   def initialize(start_pos)
