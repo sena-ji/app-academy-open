@@ -15,7 +15,7 @@ class TicTacToeNode
   # This method generates an array of all moves that can be made after
   # the current move.
   def children
-    possible_moves = []
+    possible_nodes = []
 
 
 
