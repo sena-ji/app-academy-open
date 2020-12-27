@@ -11,11 +11,21 @@ class TicTacToeNode
     if @board.over?
       # if winner is nil OR us, this is not a losing node
       return false if @board.winner.nil? || @board.winner == evaluator
+      # a draw is NOT a loss, if a nose is a draw, losing_node? should return false
+      return false if @board.tied?
       # if winner is the opponent, this is a losing node
       return true
     end
     
+    # it is the player's turn (got confused and realized this was the "computer ai")
     if next_mover_mark == evaluator
+      # all the children nodes are losers for the player
+      self.children.all? { |child_node| child_node.losing_node?(evaluator) }
+    # OR
+    else
+      # it is opponent's turn and one of the children nodes is a losing node for player
+      # assumes your opponent played perfectly and led you to a losing node
+      self.children.any? { |child_node| child_node.losing_node?(evaluator) }
   end
 
   def winning_node?(evaluator)
