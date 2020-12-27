@@ -47,4 +47,8 @@ class KnightPathFinder
 
     nil
   end
+
+  def find_path(end_pos)
+    target_node = @root_node.bfs(end_pos)
+  end
 end
