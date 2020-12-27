@@ -27,10 +27,10 @@ class TicTacToeNode
   def get_empty_pos
     empty_pos = []
 
-    @board.rows.each do |row|
-      row.each do |pos|
+    @board.rows.each_with_index do |row, r_idx|
+      row.each_with_index do |pos, c_idx|
         if pos.empty?
-
+          empty_pos << [r_idx, c_idx]
         end
       end
     end
