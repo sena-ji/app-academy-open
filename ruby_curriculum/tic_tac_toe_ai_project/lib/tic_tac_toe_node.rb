@@ -29,6 +29,15 @@ class TicTacToeNode
   end
 
   def winning_node?(evaluator)
+    # base case: the board is over AND
+    if @board.over?
+      # if winner is nil OR the opponent, this is not a winning node
+      return false if @board.winner.nil? || @board.winner != evaluator
+      # if winner is us, this is a winning node
+      return true
+    end
+
+    
   end
 
   # This method generates an array of all moves that can be made after
