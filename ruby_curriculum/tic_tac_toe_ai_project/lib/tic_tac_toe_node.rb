@@ -7,11 +7,15 @@ class TicTacToeNode
   end
 
   def losing_node?(evaluator)
+    # base case: the board is over AND
     if @board.over?
+      # if winner is nil OR us, this is not a losing node
       return false if @board.winner.nil? || @board.winner == evaluator
-      
+      # if winner is the opponent, this is a losing node
       return true
     end
+    
+    if next_mover_mark == evaluator
   end
 
   def winning_node?(evaluator)
