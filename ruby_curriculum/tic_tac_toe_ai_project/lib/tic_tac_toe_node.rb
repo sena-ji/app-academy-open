@@ -1,6 +1,8 @@
 require_relative 'tic_tac_toe'
 
 class TicTacToeNode
+  attr_accessor :board, :next_mover_mark, :prev_move_pos
+
   def initialize(board, next_mover_mark, prev_move_pos = nil)
   end
 
@@ -13,5 +15,26 @@ class TicTacToeNode
   # This method generates an array of all moves that can be made after
   # the current move.
   def children
+    possible_moves = []
+
+
+
+    next_mover_mark = 
+  end
+
+  # helper function to get empty positions on board
+  # children function was getting too long with all the enumerables
+  def get_empty_pos
+    empty_pos = []
+
+    @board.rows.each do |row|
+      row.each do |pos|
+        if pos.empty?
+
+        end
+      end
+    end
+
+    empty_pos
   end
 end
