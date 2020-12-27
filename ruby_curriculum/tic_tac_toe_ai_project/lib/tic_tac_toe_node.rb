@@ -18,7 +18,7 @@ class TicTacToeNode
     end
     
     # it is the player's turn (got confused and realized this was the "computer ai")
-    if next_mover_mark == evaluator
+    if @next_mover_mark == evaluator
       # all the children nodes are losers for the player
       self.children.all? { |child_node| child_node.losing_node?(evaluator) }
     # OR
@@ -26,6 +26,7 @@ class TicTacToeNode
       # it is opponent's turn and one of the children nodes is a losing node for player
       # assumes your opponent played perfectly and led you to a losing node
       self.children.any? { |child_node| child_node.losing_node?(evaluator) }
+    end
   end
 
   def winning_node?(evaluator)
@@ -37,7 +38,15 @@ class TicTacToeNode
       return true
     end
 
-    
+    # it is the player's turn
+    if @next_mover_mark == evaluator
+      # one of the children nodes is a winning node for the player
+      self.children.any? { |child_node| child_node.winning_node?(evaluator) }
+    # OR
+    else
+      # it is the opponent's turn, and all of the children nodes are winning nodes for the player
+      self.children.all? { |child_node| child_node.winning_node?(evaluator) }
+    end
   end
 
   # This method generates an array of all moves that can be made after
@@ -51,9 +60,9 @@ class TicTacToeNode
       # create a node by duping the board
       duped_board = @board.dup
       # put a next_mover_mark in the position
-      duped_board[pos] = next_mover_mark
+      duped_board[pos] = @next_mover_mark
       # alternate next_mover_mark
-      next_mark = next_mover_mark == :x ? :o : :x
+      next_mark = @next_mover_mark == :x ? :o : :x
       # set prev_move_pos to position you just marked
       new_possible_node = TicTacToeNode(duped_board, next_mark, pos)
       possible_nodes << new_possible_node
