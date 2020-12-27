@@ -17,9 +17,21 @@ class TicTacToeNode
   def children
     possible_nodes = []
 
+    # iterate through all positions that are empty?
+    # for each empty position
+    get_empty_pos.each do |pos|
+      # create a node by duping the board
+      duped_board = @board.dup
+      # put a next_mover_mark in the position
+      duped_board[pos] = next_mover_mark
+      # alternate next_mover_mark
+      next_mark = next_mover_mark == :x ? :o : :x
+      # set prev_move_pos to position you just marked
+      new_possible_node = TicTacToeNode(duped_board, next_mark, pos)
+      possible_nodes << new_possible_node
+    end
 
-
-    next_mover_mark = 
+    possible_nodes
   end
 
   # helper function to get empty positions on board
