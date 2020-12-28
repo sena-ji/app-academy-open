@@ -3,7 +3,7 @@ require_relative 'tic_tac_toe_node'
 class SuperComputerPlayer < ComputerPlayer
   def move(game, mark)
     # build a TicTacToeNode from the board stored in the game passed in as an argument
-    ttt_node = TicTacToeNode(game.board, mark)
+    ttt_node = TicTacToeNode.new(game.board, mark)
 
     # iterate through the children of the node we just created
     # if any of the children is a winning_node? for mark passed in method
