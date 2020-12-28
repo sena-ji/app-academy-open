@@ -3,24 +3,12 @@ require_relative "tile.rb"
 
 # should store a GRID of Tiles
 class Board
-  TILE_VALUES = Array.new
   FILE = "./puzzles/sudoku1.txt"
 
   attr_accessor :grid
 
   # puzzles exist as text files, so write a factory method 
   # to read a file and parse it into a 2D array containing Tile instances
-  def self.from_file(file)
-    read_values = File.read(file).split("\n")
-
-    read_values.each do |value| 
-      value.split("").map { |int_value| TILE_VALUES << Tile.new(int_value) }
-    end
-    
-    TILE_VALUES.each_slice(9).to_a.each do |row| 
-      row.each_index { |idx| row[idx].given? }
-    end
-  end
 
   # define your Board#initialize method to accept such grid as argument
   def initialize
