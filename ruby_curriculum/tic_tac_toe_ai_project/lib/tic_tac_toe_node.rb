@@ -67,7 +67,7 @@ class TicTacToeNode
       # alternate next_mover_mark
       next_mark = @next_mover_mark == :x ? :o : :x
       # set prev_move_pos to position you just marked
-      new_possible_node = TicTacToeNode(duped_board, next_mark, pos)
+      new_possible_node = TicTacToeNode.new(duped_board, next_mark, pos)
       possible_nodes << new_possible_node
     end
 
@@ -81,7 +81,7 @@ class TicTacToeNode
 
     @board.rows.each_with_index do |row, r_idx|
       row.each_with_index do |pos, c_idx|
-        if pos.empty?
+        if pos.nil?
           empty_pos << [r_idx, c_idx]
         end
       end
