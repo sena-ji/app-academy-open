@@ -6,11 +6,25 @@ end
 # PHASE 3
 FRUITS = ["apple", "banana", "orange"]
 
+class CoffeeError < StandardError
+  def message
+    puts "OMG, thanks so much for the coffee! I LOVE COFFEE! Give me another one :)"
+  end
+end
+
+class InvalidFruitError < StandardError
+  def message
+    puts "Wrong fruit! I cannot eat this :("
+  end
+end
+
 def reaction(maybe_fruit)
   if FRUITS.include? maybe_fruit
     puts "OMG, thanks so much for the #{maybe_fruit}!"
-  else 
-    raise StandardError 
+  elsif maybe_fruit.downcase == "coffee"
+    raise CoffeeError
+  else
+    raise InvalidFruitError
   end 
 end
 
