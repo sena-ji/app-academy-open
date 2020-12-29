@@ -62,3 +62,8 @@ class Mancala
     puts " 1   2   3   4   5   6"
   end
 end
+
+if __FILE__ == $PROGRAM_NAME
+  game = Mancala.new("Huy", "Jesse")
+  game.play
+end
