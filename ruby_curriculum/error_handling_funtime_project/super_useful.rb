@@ -31,7 +31,7 @@ def reaction(maybe_fruit)
   elsif maybe_fruit.downcase == "coffee"
     raise CoffeeError.new("OMG, thanks so much for the coffee! I LOVE COFFEE! Give me another one :)")
   else
-    raise InvalidFruitError.new("Wrong fruit! I cannot eat this :(")
+    raise InvalidFruitError.new("Bad fruit! I cannot eat this :(")
   end 
 end
 
@@ -40,7 +40,8 @@ def feed_me_a_fruit
 
   puts "Feed me a fruit! (Enter the name of a fruit:)"
   maybe_fruit = gets.chomp
-  reaction(maybe_fruit)
+  begin
+    reaction(maybe_fruit)
   rescue CoffeeError => e
     puts e.message
     retry
