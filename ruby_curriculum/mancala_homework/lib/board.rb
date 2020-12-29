@@ -67,6 +67,12 @@ class Board
   end
 
   def one_side_empty?
+    if ((0..5).all? { |idx| @cups[idx].empty? }) ||
+       ((7..12).all? { |idx| @cups[idx].empty? })
+       return true
+    end
+
+    false
   end
 
   def winner
