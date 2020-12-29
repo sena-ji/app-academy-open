@@ -6,6 +6,13 @@ end
 # PHASE 3
 FRUITS = ["apple", "banana", "orange"]
 
+  # App Academy's exception post confused me and did not go through a lot of the parts on how to properly write them.
+  # found this blog post that I found useful:
+  # https://www.honeybadger.io/blog/a-beginner-s-guide-to-exceptions-in-ruby/
+  # also this stackoverflow question's answer said that "raise already sets the message so you don't have to pass it to the constructor":
+  # https://stackoverflow.com/questions/16106645/ruby-custom-error-classes-inheritance-of-the-message-attribute
+  # but I did it anyways so it's easier to read
+
 class CoffeeError < StandardError
   def initialize(message)
     super(message)
@@ -35,6 +42,10 @@ def feed_me_a_fruit
   maybe_fruit = gets.chomp
   reaction(maybe_fruit)
   rescue CoffeeError => e
+    puts e.message
+    retry
+  rescue InvalidFruitError => e
+    puts e.message
 end  
 
 # PHASE 4
