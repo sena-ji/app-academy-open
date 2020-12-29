@@ -57,13 +57,35 @@ class InvalidYearError < ArgumentError
   end
 end
 
+class InvalidNameError < ArgumentError
+  def initialize(message)
+    super(message)
+  end
+end
+
+class InvalidPastimeError < ArgumentError
+  def initialize(message)
+    super(message)
+  end
+end
+
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
     if yrs_known < 5
       raise InvalidYearError.new("A bestie friendship must be more than at least 5 years!")
     else
-      @name = name
       @yrs_known = yrs_known
+    end
+
+    if name.length <= 0
+      raise InvalidNameError.new("You must know your bestie's name!")
+    else
+      @name = name
+    end
+
+    if fav_pastime.length <= 0
+      raise InvalidPastimeError.new("You must know a favorite pastime with your bestie!")
+    else
       @fav_pastime = fav_pastime
     end
   end
