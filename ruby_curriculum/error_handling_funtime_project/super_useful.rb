@@ -7,14 +7,14 @@ end
 FRUITS = ["apple", "banana", "orange"]
 
 class CoffeeError < StandardError
-  def message
-    puts "OMG, thanks so much for the coffee! I LOVE COFFEE! Give me another one :)"
+  def initialize(message)
+    super(message)
   end
 end
 
 class InvalidFruitError < StandardError
-  def message
-    puts "Wrong fruit! I cannot eat this :("
+  def initialize(message)
+    super(message)
   end
 end
 
@@ -22,9 +22,9 @@ def reaction(maybe_fruit)
   if FRUITS.include? maybe_fruit
     puts "OMG, thanks so much for the #{maybe_fruit}!"
   elsif maybe_fruit.downcase == "coffee"
-    raise CoffeeError
+    raise CoffeeError.new("OMG, thanks so much for the coffee! I LOVE COFFEE! Give me another one :)")
   else
-    raise InvalidFruitError
+    raise InvalidFruitError.new("Wrong fruit! I cannot eat this :(")
   end 
 end
 
@@ -33,7 +33,8 @@ def feed_me_a_fruit
 
   puts "Feed me a fruit! (Enter the name of a fruit:)"
   maybe_fruit = gets.chomp
-  reaction(maybe_fruit) 
+  reaction(maybe_fruit)
+  rescue CoffeeError => e
 end  
 
 # PHASE 4
