@@ -28,10 +28,34 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+    start_cup = @cups[start_pos]
+    @cups[start_pos] = []
+    temp_pos = start_pos
+
+    until start_cup.empty?
+      temp_pos += 1
+      temp_pos = 0 if temp_pos > 13
+      
+      if current_player_name == @player1 && temp_pos == 6
+        @cups[temp_pos] << start_cup.pop
+      elsif current_player_name == @player2 && temp_pos == 13
+        @cups[temp_pos] << start_cup.pop
+      elsif temp_pos != 6 && temp_pos != 13
+        @cups[temp_pos] << start_cup.pop
+      end
+    end
+
+    self.render
+    next_turn(temp_pos)
   end
 
   def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
+    # switched up order of two first if statements
+    # if ending_cup_idx is at a store and has one stone, it will return the wrong value
+    return :prompt if ending_cup_idx == 6 || ending_cup_idx == 13
+    return :switch if @cups[ending_cup_idx].length == 1
+    ending_cup_idx
   end
 
   def render
