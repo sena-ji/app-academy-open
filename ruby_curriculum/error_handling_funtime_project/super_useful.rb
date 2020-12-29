@@ -51,11 +51,21 @@ def feed_me_a_fruit
 end  
 
 # PHASE 4
+class InvalidYearError < ArgumentError
+  def initialize(message)
+    super(message)
+  end
+end
+
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
-    @name = name
-    @yrs_known = yrs_known
-    @fav_pastime = fav_pastime
+    if yrs_known < 5
+      raise InvalidYearError.new("A bestie friendship must be more than at least 5 years!")
+    else
+      @name = name
+      @yrs_known = yrs_known
+      @fav_pastime = fav_pastime
+    end
   end
 
   def talk_about_friendship
