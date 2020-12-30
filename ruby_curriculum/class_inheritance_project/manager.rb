@@ -12,6 +12,9 @@ class Manager < Employee
     get_total_salary(self) * multiplier
   end
 
+  # tried to do this with recursion -> similar to the Array#flatten I implemented for the recursion homework
+  # realized it was similar to dfs
+  # found that bfs was easier to implement
   def get_total_salary(person)
     queue = person.employees
 
