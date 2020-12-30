@@ -32,16 +32,16 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
-    if @rows[start_pos].nil?
+    if self[start_pos].nil?
       raise InvalidPieceError.new("There is no piece at #{start_pos}")
     end
 
-    unless @rows[end_pos].nil?
+    unless self[end_pos].nil?
       raise InvalidMoveError.new("The piece cannot move to that position")
     end
 
-    @rows[end_pos] = @rows[start_pos]
-    @rows[start_pos] = nil
+    self[end_pos] = self[start_pos]
+    self[start_pos] = nil
   end
 
   class InvalidPieceError < StandardError
