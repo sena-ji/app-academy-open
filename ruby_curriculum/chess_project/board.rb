@@ -8,13 +8,13 @@ class Board
 
     (0..1).each do |row|
       (0..7).each do |col|
-        @rows[row][col] = Piece.new(white)
+        @rows[row][col] = Piece.new("white")
       end
     end
 
     (6..7).each do |row|
       (0..7).each do |col|
-        @rows[row][col] = Piece.new(white)
+        @rows[row][col] = Piece.new("white")
       end
     end
   end
@@ -26,28 +26,31 @@ class Board
   end
 
   def []=(pos, val)
-    @rows[pos] = val
+    row, col = pos
+
+    @rows[row][col] = val
   end
 
   def move_piece(start_pos, end_pos)
     if @rows[start_pos].nil?
-      raise InvalidStartPosError.new("There is no piece at #{start_pos}")
+      raise InvalidPieceError.new("There is no piece at #{start_pos}")
     end
 
     unless @rows[end_pos].nil?
-      raise InvalidEndPosError.new("The piece cannot move to that position")
+      raise InvalidMoveError.new("The piece cannot move to that position")
     end
 
     @rows[end_pos] = @rows[start_pos]
+    @rows[start_pos] = nil
   end
 
-  class InvalidStartPosError < StandardError
+  class InvalidPieceError < StandardError
     def initialize(message)
       super(message)
     end
   end
 
-  class InvalidEndPosError < StandardError
+  class InvalidMoveError < StandardError
     def initialize(message)
       super(message)
     end
