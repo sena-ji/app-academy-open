@@ -31,13 +31,18 @@ class Board
     @rows[row][col] = val
   end
 
+  # initially I called the positions as: @rows[start_pos]
+  # this resulted in an error because we want to call the instance functions above ([] and []=)
+  # so we gotta call with self instead of @rows
+  # when we use this board class somewhere else i.e. the Chess class, we can call it as board[start_pos]
+  # since board is a Board instance and can utilize those funtions with a name
   def move_piece(start_pos, end_pos)
     if self[start_pos].nil?
       raise InvalidPieceError.new("There is no piece at #{start_pos}")
     end
 
     unless self[end_pos].nil?
-      raise InvalidMoveError.new("The piece cannot move to that position")
+      raise InvalidMoveError.new("The selected piece cannot move to that position")
     end
 
     self[end_pos] = self[start_pos]
