@@ -6,28 +6,46 @@ Instructions: implement all of the pending specs (the `it` statements without bl
 =end
 
 describe Dessert do
-  subject(:ice_cream) { Dessert.new("ice cream", 3, "Steve")}
+  subject(:ice_cream) { Dessert.new("ice cream", 3, chef) }
   let(:chef) { double("chef", :name => "Steve") }
 
   describe "#initialize" do
-    it "sets a type"
-      expect(ice_cream.type).to eq('ice cream')
-    it "sets a quantity"
+    it "sets a type" do
+      expect(ice_cream.type).to eq("ice cream")
+    end
+
+    it "sets a quantity" do
       expect(ice_cream.quantity).to eq(3)
-    it "starts ingredients as an empty array"
+    end
+
+    it "starts ingredients as an empty array" do
       expect(ice_cream.ingredients).to eq([])
-    it "raises an argument error when given a non-integer quantity"
-      expect { Dessert.new("ice cream", "thirty", "Steve") }.to raise_error(ArgumentError)
+    end
+
+    it "raises an argument error when given a non-integer quantity" do
+      expect { Dessert.new("ice cream", "thirty", chef) }.to raise_error(ArgumentError)
+    end
   end
 
   describe "#add_ingredient" do
-    it "adds an ingredient to the ingredients array"
+    it "adds an ingredient to the ingredients array" do
       ice_cream.add_ingredient("milk")
-      expect(ice_cream.ingredients). to include("milk")
+      expect(ice_cream.ingredients).to include("milk")
+    end
   end
 
   describe "#mix!" do
-    it "shuffles the ingredient array"
+    it "shuffles the ingredient array" do
+      ingredients = ["milk", "vanilla", "sugar"]
+
+      ingredients.each do |ingredient|
+        ice_cream.add_ingredient(ingredient)
+      end
+
+      expect(ice_cream.ingredients).to eq(ingredients)
+      ice_cream.mix!
+      expect(ice_cream.ingredients).not_to eq(ingredients)
+    end
   end
 
   describe "#eat" do
