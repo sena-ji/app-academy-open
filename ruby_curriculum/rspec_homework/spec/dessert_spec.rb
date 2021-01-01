@@ -11,17 +11,19 @@ describe Dessert do
 
   describe "#initialize" do
     it "sets a type"
-      expect(dessert.type).to eq('ice cream')
+      expect(ice_cream.type).to eq('ice cream')
     it "sets a quantity"
-      expect(dessert.quantity).to eq(3)
+      expect(ice_cream.quantity).to eq(3)
     it "starts ingredients as an empty array"
-      expect(dessert.ingredients).to eq([])
+      expect(ice_cream.ingredients).to eq([])
     it "raises an argument error when given a non-integer quantity"
       expect { Dessert.new("ice cream", "thirty", "Steve") }.to raise_error(ArgumentError)
   end
 
   describe "#add_ingredient" do
     it "adds an ingredient to the ingredients array"
+      ice_cream.add_ingredient("milk")
+      expect(ice_cream.ingredients). to include("milk")
   end
 
   describe "#mix!" do
