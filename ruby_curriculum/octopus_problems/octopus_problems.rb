@@ -1,3 +1,5 @@
+fishes = ['fish', 'fiiish', 'fiiiiish', 'fiiiish', 'fffish', 'ffiiiiisshh', 'fsh', 'fiiiissshhhhhh']
+
 # Find the longest fish in O(n^2) time. Do this by comparing all fish lengths to all other fish lengths.
 def sluggish_octopus(fish_array)
   longest_fish = ""
@@ -74,7 +76,16 @@ def clever_octopus(fish_array)
   longest_fish
 end
 
+tiles_array = ["up", "right-up", "right", "right-down", "down", "left-down", "left",  "left-up"]
+new_tiles_array = { "up" => 0, "right-up" => 1, "right" => 2, "right-down" => 3, "down" => 4, "left-down" => 5, "left" => 6,  "left-up" => 7 }
+
 # Given a tile direction, iterate through tiles array to return the tentacle number (tile index) the octopus must move. This should take O(n) time.
 def slow_dance(direction, tiles_array)
   tiles_array.each { |dir| return tiles_array.index(dir) if direction == dir }
+end
+
+# Use a different data structure and write a new function so that you can access the tentacle number in O(1) time.
+# I immediately thought of using a hash for this problem
+def fast_dance(direction, new_tiles_array)
+  new_tiles_array[direction]
 end
