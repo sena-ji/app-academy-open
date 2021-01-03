@@ -73,3 +73,8 @@ def clever_octopus(fish_array)
 
   longest_fish
 end
+
+# Given a tile direction, iterate through tiles array to return the tentacle number (tile index) the octopus must move. This should take O(n) time.
+def slow_dance(direction, tiles_array)
+  tiles_array.each { |dir| return tiles_array.index(dir) if direction == dir }
+end
