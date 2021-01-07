@@ -5,9 +5,15 @@ def first_anagram?(str1, str2)
   anagrams.include?(str2)
 end
 
-# O()
+# O(n^2)
 def second_anagram?(str1, str2)
+  str1.each_char do |char|
+    idx = str2.index(char)
+    return false if idx.nil?
+    str2.slice!(idx)
+  end
 
+  str2.empty?
 end
 
 if __FILE__ == $PROGRAM_NAME
