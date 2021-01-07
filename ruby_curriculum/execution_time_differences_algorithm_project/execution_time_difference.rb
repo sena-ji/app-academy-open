@@ -49,7 +49,21 @@ def largest_contiguous_subsum1(int_list)
 
   sub_arrays.max
 end
-
 # what is the time complexity? O(n^2 + n)
 # I think the time complexity is O(n^2 + n) because there are 2 nested loops for the first loop
 # then there is another loop after the nested loop to find the sum of the sub arrays within the array
+
+# had trouble solving this one -> found a cool algorithm to implement phase 2
+# https://stackoverflow.com/questions/41834704/efficient-algorithm-for-maximum-sum-contiguous-subarray-implemented-in-ruby-time
+# phase 2
+def largest_contiguous_subsum2(int_list)
+  largest_sum = int_list.first
+  curr_sum = int_list.first
+
+  (1...int_list.length).each do |idx|
+    curr_sum = (int_list[idx] > curr_sum + int_list[idx]) ? int_list[idx] : curr_sum + int_list[idx]
+    largest_sum = curr_sum if curr_sum > largest_sum
+  end
+
+  largest_sum
+end
