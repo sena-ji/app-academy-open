@@ -33,3 +33,23 @@ end
 # largest_contiguous_subsum(list) # => -1 (from [-1])
 
 # phase 1
+def largest_contiguous_subsum1(int_list)
+  sub_arrays = []
+
+  (0...int_list.length).each do |idx1|
+    (idx1...int_list.length).each do |idx2|
+      sub_arrays << int_list[idx1..idx2]
+    end
+  end
+
+  sub_arrays.each_with_index do |arr, idx|
+    sum_arr = arr.sum
+    sub_arrays[idx] = sum_arr
+  end
+
+  sub_arrays.max
+end
+
+# what is the time complexity? O(n^2 + n)
+# I think the time complexity is O(n^2 + n) because there are 2 nested loops for the first loop
+# then there is another loop after the nested loop to find the sum of the sub arrays within the array
