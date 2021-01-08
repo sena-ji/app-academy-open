@@ -24,10 +24,21 @@ def third_anagram?(str1, str2)
   sorted_str1 == sorted_str2
 end
 
+# O(n)
+def fourth_anagram?(str1, str2)
+  str1_hash = Hash.new(0)
+  str2_hash = Hash.new(0)
+
+  str1.each_char { |char| str1_hash[char] += 1 }
+  str2.each_char { |char| str2_hash[char] += 1 }
+
+  str1_hash == str2_hash 
+end
+
 if __FILE__ == $PROGRAM_NAME
-  puts third_anagram?("rated", "trade") # true
-  puts third_anagram?("car", "rat") # false
-  puts third_anagram?("spread", "drapes") # true
-  puts third_anagram?("emigrants", "streaming") # true
-  puts third_anagram?("dose", "sope") # false
+  puts fourth_anagram?("rated", "trade") # true
+  puts fourth_anagram?("car", "rat") # false
+  puts fourth_anagram?("spread", "drapes") # true
+  puts fourth_anagram?("emigrants", "streaming") # true
+  puts fourth_anagram?("dose", "sope") # false
 end
