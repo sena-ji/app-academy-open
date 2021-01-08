@@ -16,10 +16,18 @@ def second_anagram?(str1, str2)
   str2.empty?
 end
 
+# O(n log(n))
+def third_anagram?(str1, str2)
+  sorted_str1 = str1.split("").sort
+  sorted_str2 = str2.split("").sort
+
+  sorted_str1 == sorted_str2
+end
+
 if __FILE__ == $PROGRAM_NAME
-  puts second_anagram?("rated", "trade") # true
-  puts second_anagram?("car", "rat") # false
-  puts second_anagram?("spread", "drapes") # true
-  puts second_anagram?("emigrants", "streaming") # true
-  puts second_anagram?("dose", "sope") # false
+  puts third_anagram?("rated", "trade") # true
+  puts third_anagram?("car", "rat") # false
+  puts third_anagram?("spread", "drapes") # true
+  puts third_anagram?("emigrants", "streaming") # true
+  puts third_anagram?("dose", "sope") # false
 end
