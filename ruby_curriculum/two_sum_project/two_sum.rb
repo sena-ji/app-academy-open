@@ -9,8 +9,7 @@ def bad_two_sum?(arr, target_sum)
   false
 end
 
-# time complexity is O(n) as indicated in this stackoverflow thread:
-# https://stackoverflow.com/questions/8334981/find-pair-of-numbers-in-array-that-add-to-given-sum
+# time complexity is O(nlog(n))
 def okay_two_sum?(arr, target_sum)
   sorted_arr = arr.sort
   left_pointer = 0
@@ -25,8 +24,20 @@ def okay_two_sum?(arr, target_sum)
   false
 end
 
+# time complexity is O(n)
+def two_sum?(arr, target_sum)
+  sum_hash = Hash.new
+
+  arr.each do |int|
+    return true if sum_hash[target_sum-int] == 0
+    sum_hash[int] = 0
+  end
+
+  false
+end
+
 if __FILE__ == $PROGRAM_NAME
   arr = [0, 1, 5, 7]
-  puts okay_two_sum?(arr, 6) # => should be true
-  puts okay_two_sum?(arr, 10) # => should be false
+  puts two_sum?(arr, 6) # => should be true
+  puts two_sum?(arr, 10) # => should be false
 end
