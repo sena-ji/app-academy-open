@@ -41,7 +41,7 @@ def ford_films
   # List the films in which 'Harrison Ford' has appeared.
   execute(<<-SQL)
     SELECT
-      title
+      movies.title
     FROM
       movies
     JOIN
@@ -59,7 +59,7 @@ def ford_supporting_films
   # ord=1 then this actor is in the starring role]
   execute(<<-SQL)
     SELECT
-      title
+      movies.title
     FROM
       movies
     JOIN
@@ -75,7 +75,6 @@ end
 def films_and_stars_from_sixty_two
   # List the title and leading star of every 1962 film.
   execute(<<-SQL)
-  
   SQL
 end
 

@@ -117,7 +117,7 @@ def casablanca_cast
   # in the previous question directly in your query (for example, id = 1).
   execute(<<-SQL)
     SELECT
-      name
+      actors.name
     FROM
       actors
     JOIN
@@ -131,7 +131,7 @@ def alien_cast
   # Obtain the cast list for the film 'Alien'
   execute(<<-SQL)
     SELECT
-      name
+      actors.name
     FROM
       actors
     JOIN
