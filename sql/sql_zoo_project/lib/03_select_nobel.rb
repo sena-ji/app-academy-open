@@ -41,8 +41,8 @@ def literature_1962
     FROM
       nobels
     WHERE
-      yr = 1962 AND
-      subject = 'Literature'
+      (yr = 1962 
+        AND subject = 'Literature')
   SQL
 end
 
@@ -67,8 +67,8 @@ def millennial_peace_prizes
     FROM
       nobels
     WHERE
-      yr >= 2000 AND
-      subject = 'Peace'
+      (yr >= 2000 
+        AND subject = 'Peace')
   SQL
 end
 
@@ -81,8 +81,8 @@ def eighties_literature
     FROM
       nobels
     WHERE
-      subject = 'Literature' AND
-      yr BETWEEN 1980 AND 1989
+      (subject = 'Literature' 
+        AND yr BETWEEN 1980 AND 1989)
   SQL
 end
 

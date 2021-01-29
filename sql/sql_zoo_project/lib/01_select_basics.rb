@@ -56,8 +56,8 @@ def small_and_wealthy
     FROM
       countries
     WHERE
-      area < 2000 AND
-      gdp > 5000000000
+      (area < 2000 
+        AND gdp > 5000000000)
   SQL
 end
 

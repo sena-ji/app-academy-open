@@ -67,8 +67,7 @@ def richer_than_england
           countries
         WHERE
           name = 'United Kingdom'
-      ) AND
-      continent = 'Europe'
+      ) AND continent = 'Europe'
   SQL
 end
 
