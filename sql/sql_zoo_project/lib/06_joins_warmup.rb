@@ -139,6 +139,6 @@ def alien_cast
     JOIN
       movies ON castings.movie_id = movies.id
     WHERE
-      title = 'Alien'
+      movies.title = 'Alien'
   SQL
 end
