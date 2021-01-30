@@ -189,6 +189,21 @@ def craiglockhart_and_tollcross
   # Give the company and num of the services that connect stops
   # 'Craiglockhart' and 'Tollcross'
   execute(<<-SQL)
+    SELECT
+      a.company,
+      a.num
+    FROM
+      routes a
+    JOIN
+      routes b ON (a.company = b.company
+                    AND a.num = b.num)
+    JOIN
+      stops stopa ON a.stop_id = stopa.id
+    JOIN
+      stops stopb ON b.stop_id = stopb.id
+    WHERE
+      (stopa.name = 'Craiglockhart'
+        AND stopb.name = 'Tollcross')
   SQL
 end
 
