@@ -147,6 +147,23 @@ def cl_to_lr_by_name
   # number. Change the query so that the services between 'Craiglockhart' and
   # 'London Road' are shown.
   execute(<<-SQL)
+    SELECT
+      a.company,
+      a.num,
+      stopa.name,
+      stopb.name
+    FROM
+      routes a
+    JOIN
+      routes b ON (a.company = b.company
+                    AND a.num = b.num)
+    JOIN
+      stops stopa ON (a.stop_id = stopa.id)
+    JOIN
+      stops stopb ON (b.stop_id = stopb.id)
+    WHERE
+      (stopa.name = 'Craiglockhart'
+        AND stopb.name = 'London Road')
   SQL
 end
 
