@@ -70,6 +70,20 @@ def heart_tracks
   # the word 'Heart' (albums with no such tracks need not be shown). Order first by
   # the number of such tracks, then by album title.
   execute(<<-SQL)
+    SELECT
+      albums.title,
+      COUNT(tracks.song) AS total_number_of_tracks
+    FROM
+      albums
+    JOIN
+      tracks ON albums.asin = tracks.album
+    WHERE
+      tracks.song LIKE '%Heart%'
+    GROUP BY
+      albums.title
+    ORDER BY
+      COUNT(tracks.song) DESC,
+      albums.title ASC
   SQL
 end
 
@@ -77,6 +91,14 @@ def title_tracks
   # A 'title track' has a `song` that is the same as its album's `title`. Select
   # the names of all the title tracks.
   execute(<<-SQL)
+    SELECT
+      tracks.song
+    FROM
+      tracks
+    JOIN
+      albums ON tracks.album = albums.asin
+    WHERE
+      tracks.song = albums.title
   SQL
 end
 
