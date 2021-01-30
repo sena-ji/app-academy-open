@@ -179,6 +179,21 @@ def rock_superstars
   # Select the artist who has recorded the most rock albums, as well as the
   # number of albums. HINT: use LIKE '%Rock%' in your query.
   execute(<<-SQL)
+    SELECT
+      albums.artist,
+      COUNT(DISTINCT albums.title) AS number_of_albums
+    FROM
+      albums
+    JOIN
+      styles ON albums.asin = styles.album
+    WHERE
+      styles.style LIKE '%Rock%'
+    GROUP BY
+      albums.artist
+    ORDER BY
+      COUNT(DISTINCT albums.title) DESC
+    LIMIT
+      1
   SQL
 end
 
