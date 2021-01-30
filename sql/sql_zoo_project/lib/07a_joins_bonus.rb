@@ -138,6 +138,18 @@ def best_value
   # pence. Find the good value albums - show the title, the price and the number
   # of tracks.
   execute(<<-SQL)
+    SELECT
+      albums.title,
+      albums.price,
+      COUNT(tracks.song) AS number_of_tracks
+    FROM
+      albums
+    JOIN
+      tracks ON albums.asin = tracks.album
+    GROUP BY
+      albums.asin
+    HAVING
+      (albums.price / COUNT(tracks.song)) < 0.5
   SQL
 end
 
