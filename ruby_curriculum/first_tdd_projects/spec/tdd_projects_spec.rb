@@ -33,4 +33,8 @@ describe Array do
       expect(two_sum_arr.two_sum).not_to eq([[4, 0], [3, 2]])
     end
   end
+
+  describe "#my_transpose" do
+
+  end
 end
