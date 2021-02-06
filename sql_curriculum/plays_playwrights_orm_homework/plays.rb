@@ -1,5 +1,6 @@
 require 'sqlite3'
 require 'singleton'
+require_relative 'playwrights'
 
 class PlayDBConnection < SQLite3::Database
   include Singleton
