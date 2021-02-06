@@ -20,7 +20,7 @@ class Play
   end
 
   def self.find_by_title(title)
-    play = PlayDBConnection.instance.execute(<<-SQL, self.title)
+    play = PlayDBConnection.instance.execute(<<-SQL, title)
       SELECT
         *
       FROM
@@ -34,16 +34,15 @@ class Play
     Play.new(play.first)
   end
 
-  def find_by_playwright(name)
-    plays = PlayDBConnection.instance.execute(<<-SQL)
+  def self.find_by_playwright(name)
+    playwright = Playwright.find_by_name(name)
+    plays = PlayDBConnection.instance.execute(<<-SQL, playwright.id)
       SELECT
         *
       FROM
         plays
-      JOIN
-        playwrights ON plays.playwright_id = playwrights.id
       WHERE
-        playwrights.name = ?
+        playwright_id = ?
     SQL
 
     plays.map { |play| Play.new(play) }
