@@ -31,8 +31,8 @@ class Playwright
   end
 
   def create
-    raise "#{self} already in database" if self.id
-    PlayDBConnection.instance.execute(<<-SQL, name, birth_year)
+    raise "#{self} already in database" if @id
+    PlayDBConnection.instance.execute(<<-SQL, @name, @birth_year)
       INSERT INTO
         playwrights(name, birth_year)
       VALUES
@@ -43,9 +43,9 @@ class Playwright
   end
 
   def update
-    raise "#{self} not in database" unless self.id
+    raise "#{self} not in database" unless @id
 
-    PlayDBConnection.instance.execute(<<-SQL, name, birth_year, id)
+    PlayDBConnection.instance.execute(<<-SQL, @name, @birth_year, @id)
       UPDATE
         playwrights
       SET
@@ -56,9 +56,9 @@ class Playwright
   end
 
   def get_plays
-    raise "#{self} not in database" unless self.id
+    raise "#{self} not in database" unless @id
 
-    plays = PlayDBConnection.instance.execute(<<-SQL, id)
+    plays = PlayDBConnection.instance.execute(<<-SQL, @id)
       SELECT
         *
       FROM
