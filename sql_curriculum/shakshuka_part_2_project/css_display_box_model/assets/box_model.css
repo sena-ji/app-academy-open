@@ -124,6 +124,3 @@ textarea {
 label {
   display: block;
 }
-
-/* Use the display property to put input elements on their own row. At this point it probably looks better to remove the "Cooking Expertise" and "Rating" labels.
-Space out the select element with margin and assign widths to the text input, select, and textarea to finish up our form. */
