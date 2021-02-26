@@ -14,9 +14,12 @@ class Question
         id = ?
     SQL
 
-    return nil unless question.length > 0
-
-    Question.new(question)
+    # Reason why the question array was not mapped was because
+    # there is only one id for each question entry. There will
+    # never be a question that has the same id or a question
+    # that has multiple ids. We want to pass in a hash, so 
+    # .first method will be used to pass the hash.
+    Question.new(question.first)
   end
 
   def initialize(options)

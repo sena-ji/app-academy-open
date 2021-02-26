@@ -14,9 +14,7 @@ class QuestionFollow
         id = ?
     SQL
 
-    return nil unless question_follow.length > 0
-
-    QuestionFollow.new(question_follow)
+    QuestionFollow.new(question_follow.first)
   end
 
   def initialize(options)

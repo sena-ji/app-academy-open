@@ -14,9 +14,7 @@ class User
         id = ?
     SQL
 
-    return nil unless user.length > 0
-
-    User.new(user)
+    User.new(user.first)
   end
 
   def self.find_by_name(fname, lname)
@@ -28,8 +26,6 @@ class User
       WHERE fname = ?
         AND lname = ?
     SQL
-
-    return nil unless user.length > 0
 
     User.new(user)
   end
