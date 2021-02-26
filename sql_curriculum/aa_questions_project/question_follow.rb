@@ -5,7 +5,7 @@ class QuestionFollow
   attr_reader :id
 
   def self.find_by_id(id)
-    question_follows = QuestionsDatabase.instance.execute(<<-SQL, id)
+    question_follow = QuestionsDatabase.instance.execute(<<-SQL, id)
       SELECT
         *
       FROM
@@ -14,7 +14,9 @@ class QuestionFollow
         id = ?
     SQL
 
-    question_follows.map { |question_follow| QuestionFollow.new(question_follow) }
+    return nil unless question_follow.length > 0
+
+    QuestionFollow.new(question_follow)
   end
 
   def initialize(options)
