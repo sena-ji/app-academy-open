@@ -5,7 +5,7 @@ class User
   attr_reader :id
 
   def self.find_by_id(id)
-    users = QuestionsDatabase.instance.execute(<<-SQL, id)
+    user = QuestionsDatabase.instance.execute(<<-SQL, id)
       SELECT
         *
       FROM
@@ -14,7 +14,9 @@ class User
         id = ?
     SQL
 
-    users.map { |user| User.new(user) }
+    return nil unless user.length > 0
+
+    User.new(user)
   end
 
   def self.find_by_name(fname, lname)
@@ -26,6 +28,8 @@ class User
       WHERE fname = ?
         AND lname = ?
     SQL
+
+    return nil unless user.length > 0
 
     User.new(user)
   end
