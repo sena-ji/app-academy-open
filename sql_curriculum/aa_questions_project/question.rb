@@ -5,10 +5,7 @@ class Question
   attr_reader :id
 
   def self.find_by_id(id)
-    # This returns an array of hashes where each hash represents
-    # a row in the database. But we want an array of the class
-    # instances. So we map across this data (last line for this method).
-    questions = QuestionsDatabase.instance.execute(<<-SQL, id)
+    question = QuestionsDatabase.instance.execute(<<-SQL, id)
       SELECT
         *
       FROM
@@ -17,7 +14,9 @@ class Question
         id = ?
     SQL
 
-    questions.map { |question| Question.new(question) }
+    return nil unless question.length > 0
+
+    Question.new(question)
   end
 
   def initialize(options)
