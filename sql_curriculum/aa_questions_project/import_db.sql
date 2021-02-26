@@ -76,3 +76,12 @@ VALUES
   (2, 1),
   (3, 3);
 
+INSERT INTO
+  replies (body, parent_reply_id, subject_question_id, user_id)
+VALUES
+  ('It is a Akita!', NULL, 1, 1),
+  ('No, this is definitely a Shiba.', 1, 1, 3),
+  ('The answer is 6.', NULL, 2, 2),
+  ('Anthony Davis.', NULL, 3, 2),
+  ('Definitely Anthony Davis.', 4, 3, 3);
+
