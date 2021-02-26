@@ -61,3 +61,18 @@ VALUES
   ('Sena', 'Ji'),
   ('Terilyn', 'Truong'),
   ('Andre', 'Truong');
+
+INSERT INTO
+  questions (title, body)
+VALUES
+  ('What is the name of this dog breed?', 'I have no idea what breed my dog is.', 2),
+  ('What is 3+3?', 'I am clueless with math...', 1),
+  ('Who is the best NBA player?', 'I want to know.', 3);
+
+INSERT INTO
+  question_follows (user_id, question_id)
+VALUES
+  (1, 2),
+  (2, 1),
+  (3, 3);
+
