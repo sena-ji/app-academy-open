@@ -2,6 +2,7 @@ require_relative 'questions_database'
 
 class Question
   attr_accessor :title, :body, :author_id
+  attr_reader :id
 
   def self.find_by_id(id)
     # This returns an array of hashes where each hash represents
