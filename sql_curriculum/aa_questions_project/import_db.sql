@@ -85,3 +85,11 @@ VALUES
   ('Anthony Davis.', NULL, 3, 2),
   ('Definitely Anthony Davis.', 4, 3, 3);
 
+INSERT INTO
+  question_likes (user_id, question_id)
+VALUES
+  (1, 1),
+  (1, 3),
+  (2, 3),
+  (2, 2),
+  (3, 1);
