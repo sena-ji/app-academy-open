@@ -63,7 +63,7 @@ VALUES
   ('Andre', 'Truong');
 
 INSERT INTO
-  questions (title, body)
+  questions (title, body, author_id)
 VALUES
   ('What is the name of this dog breed?', 'I have no idea what breed my dog is.', 2),
   ('What is 3+3?', 'I am clueless with math...', 1),
