@@ -11,6 +11,6 @@ class QuestionsDatabase < SQLite3::Database
   end
 end
 
-    # This returns an array of hashes where each hash represents
-    # a row in the database. But we want an array of the class
-    # instances. So we map across this data (last line for this method).
+# This returns an array of hashes where each hash represents
+# a row in the database. But we want an array of the class
+# instances. So we map across this data (last line for this method).

@@ -1,4 +1,8 @@
 require_relative 'questions_database'
+require_relative 'user'
+require_relative 'question'
+require_relative 'question_follow'
+require_relative 'question_like'
 
 class Reply
   attr_accessor :body, :parent_reply_id, :subject_question_id, :user_id
