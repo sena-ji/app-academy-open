@@ -36,8 +36,8 @@ class User
 
   def initialize(options)
     @id = options['id']
-    @fname = options['id']
-    @lname = options['id']
+    @fname = options['fname']
+    @lname = options['lname']
   end
 
   def authored_questions

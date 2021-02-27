@@ -21,6 +21,25 @@ class QuestionFollow
     QuestionFollow.new(question_follow.first)
   end
 
+  def self.followers_for_question_id(question_id)
+    followers = QuestionsDatabase.instance.execute(<<-SQL, question_id)
+      SELECT
+        users.id,
+        users.fname,
+        users.lname
+      FROM
+        question_follows
+      JOIN
+        users ON question_follows.user_id = users.id
+      JOIN
+        questions ON question_follows.question_id = questions.id
+      WHERE
+        question_id = ?
+    SQL
+
+    followers.map { |follower| User.new(follower) }
+  end
+
   def initialize(options)
     @id = options['id']
     @user_id = options['user_id']
