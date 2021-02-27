@@ -54,4 +54,20 @@ class Reply
     @subject_question_id = options['subject_question_id']
     @user_id = options['user_id']
   end
+
+  def author
+    User.find_by_id(@user_id)
+  end
+
+  def question
+    Question.find_by_id(@subject_question_id)
+  end
+
+  def parent_reply
+
+  end
+
+  def child_replies
+
+  end
 end
