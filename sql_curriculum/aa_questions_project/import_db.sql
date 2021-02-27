@@ -61,7 +61,8 @@ VALUES
   ('Sena', 'Ji'),
   ('Terilyn', 'Truong'),
   ('Andre', 'Truong'),
-  ('Sir', 'Randal');
+  ('Sir', 'Randal'),
+  ('Vinnie', 'Nguyen');
 
 INSERT INTO
   questions (title, body, author_id)
@@ -76,7 +77,8 @@ VALUES
   (1, 2),
   (2, 1),
   (3, 3),
-  (4, 3);
+  (4, 3),
+  (5, 3);
 
 INSERT INTO
   replies (body, parent_reply_id, subject_question_id, user_id)
@@ -95,4 +97,5 @@ VALUES
   (2, 3),
   (2, 2),
   (4, 3),
-  (3, 1);
+  (3, 1),
+  (5, 1);
