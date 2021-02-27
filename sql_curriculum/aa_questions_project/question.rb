@@ -49,5 +49,7 @@ class Question
     @author_id = options['author_id']
   end
 
-
+  def author
+    User.find_by_id(@author_id)
+  end
 end
