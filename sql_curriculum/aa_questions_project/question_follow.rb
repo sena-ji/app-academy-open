@@ -24,9 +24,7 @@ class QuestionFollow
   def self.followers_for_question_id(question_id)
     followers = QuestionsDatabase.instance.execute(<<-SQL, question_id)
       SELECT
-        users.id,
-        users.fname,
-        users.lname
+        *
       FROM
         question_follows
       JOIN
@@ -43,10 +41,7 @@ class QuestionFollow
   def self.followed_questions_for_user_id(user_id)
     followings = QuestionsDatabase.instance.execute(<<-SQL, user_id)
       SELECT
-        questions.id,
-        questions.title,
-        questions.body,
-        questions.author_id
+        *
       FROM
         question_follows
       JOIN
@@ -65,9 +60,9 @@ class QuestionFollow
       SELECT
         *
       FROM
-        questions
+        question_follows
       JOIN
-        question_follows ON questions.id = question_follows.question_id
+        questions ON question_follows.question_id = questions.id
       GROUP BY
         question_follows.question_id
       ORDER BY
