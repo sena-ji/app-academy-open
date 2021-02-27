@@ -22,7 +22,7 @@ class User
   end
 
   def self.find_by_name(fname, lname)
-    user = QuestionsDatabase.instance.execute(<<-SQL, fname, lname)
+    users = QuestionsDatabase.instance.execute(<<-SQL, fname, lname)
       SELECT
         *
       FROM
@@ -31,7 +31,7 @@ class User
         AND lname = ?
     SQL
 
-    User.new(user)
+    users.map { |user| User.new(user) }
   end
 
   def initialize(options)
