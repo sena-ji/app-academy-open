@@ -10,7 +10,3 @@ class QuestionsDatabase < SQLite3::Database
     self.results_as_hash = true
   end
 end
-
-# This returns an array of hashes where each hash represents
-# a row in the database. But we want an array of the class
-# instances. So we map across this data (last line for this method).
