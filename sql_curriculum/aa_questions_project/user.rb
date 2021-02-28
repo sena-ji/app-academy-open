@@ -78,7 +78,7 @@ class User
           users
         SET
           fname = ?,
-          lname = ?,
+          lname = ?
         WHERE
           users.id = ?
       SQL
