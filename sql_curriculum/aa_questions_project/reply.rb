@@ -101,7 +101,7 @@ class Reply
           (?, ?, ?, ?)
       SQL
 
-      @id = QuestionsDatabase.last_insert_row_id
+      @id = QuestionsDatabase.instance.last_insert_row_id
     end
 
     self
