@@ -70,4 +70,27 @@ class User
 
     avg_karma_for_user.first['avg_karma']
   end
+
+  def save
+    if @id
+      QuestionsDatabase.instance.execute(<<-SQL, @fname, @lname, @id)
+        UPDATE
+          users
+        SET
+          fname = ?,
+          lname = ?,
+        WHERE
+          users.id = ?
+      SQL
+    else
+      QuestionsDatabase.instance.execute(<<-SQL, @fname, @lname)
+        INSERT INTO
+          users(fname, lname)
+        VALUES
+          (?, ?)
+      SQL
+
+      @id = QuestionsDatabase.instance.last_insert_row_id
+    end
+  end
 end
