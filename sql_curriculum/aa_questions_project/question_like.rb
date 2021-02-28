@@ -51,6 +51,21 @@ class QuestionLike
     num_likes.first['like_count']
   end
 
+  def self.liked_questions_for_user_id(user_id)
+    liked_questions = QuestionsDatabase.instance.execute(<<-SQL, user_id)
+      SELECT
+        *
+      FROM
+        question_likes
+      JOIN
+        questions ON question_likes.question_id = questions.id
+      WHERE
+        user_id = ?
+    SQL
+
+    liked_questions.map { |liked_question| Question.new(liked_question) }
+  end
+
   def initialize(options)
     @id = options['id']
     @user_id = options['user_id']
