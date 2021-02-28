@@ -79,4 +79,29 @@ class Reply
 
     children_replies.map { |child_reply| Reply.new(child_reply) }
   end
+
+  def save
+    if @id
+      QuestionsDatabase.instance.execute(<<-SQL, @body, @parent_reply_id, @subject_question_id, @user_id, @id)
+        UPDATE
+          replies
+        SET
+          body = ?,
+          parent_reply_id = ?,
+          subject_question_id = ?,
+          user_id = ?
+        WHERE
+          replies.id = ?
+      SQL
+    else
+      QuestionsDatabase.instance.execute(<<-SQL, @body, @parent_reply_id, @subject_question_id, @user_id)
+        INSERT INTO
+          replies (body, parent_reply_id, subject_question_id, user_id)
+        VALUES
+          (?, ?, ?, ?)
+      SQL
+
+      @id = QuestionsDatabase.last_insert_row_id
+    end
+  end
 end

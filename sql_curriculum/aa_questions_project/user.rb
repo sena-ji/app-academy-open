@@ -85,7 +85,7 @@ class User
     else
       QuestionsDatabase.instance.execute(<<-SQL, @fname, @lname)
         INSERT INTO
-          users(fname, lname)
+          users (fname, lname)
         VALUES
           (?, ?)
       SQL

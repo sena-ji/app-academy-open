@@ -92,7 +92,7 @@ class Question
     else
       QuestionsDatabase.instance.execute(<<-SQL, @title, @body, @author_id)
         INSERT INTO
-          questions
+          questions (title, body, author_id)
         VALUES
           (?, ?, ?)
       SQL
