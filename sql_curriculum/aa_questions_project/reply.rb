@@ -103,5 +103,7 @@ class Reply
 
       @id = QuestionsDatabase.last_insert_row_id
     end
+
+    self
   end
 end

@@ -92,5 +92,7 @@ class User
 
       @id = QuestionsDatabase.instance.last_insert_row_id
     end
+
+    self
   end
 end
